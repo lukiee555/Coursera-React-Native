@@ -1,5 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
-/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import {
   Alert,
@@ -8,6 +6,7 @@ import {
   Modal,
   PanResponder,
   ScrollView,
+  Share,
   StyleSheet,
   Text,
   View,
@@ -82,6 +81,15 @@ function RenderDish({
     },
   });
 
+  const shareDish = (title, message, url) => {
+    Share.share({
+      title,
+      message: `${title}: ${message} ${url}`,
+      url,
+    }, {
+      dialogTitle: `Share ${title}`,
+    });
+  };
 
   if (dish != null) {
     return (
@@ -116,6 +124,14 @@ function RenderDish({
               type="font-awesome"
               color="#512DA8"
               onPress={() => openCommentForm()}
+            />
+            <Icon
+              raised
+              reverse
+              name="share"
+              type="font-awesome"
+              color="#51D2A8"
+              onPress={() => shareDish(dish.name, dish.description, baseUrl + dish.image)}
             />
           </View>
         </Card>
