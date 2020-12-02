@@ -10,6 +10,7 @@ function Menu(props) {
         <ListItem.Content>
           <ListItem.Title>{item.name}</ListItem.Title>
           <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
+          onPress={() => props.onPress(item.id)}
         </ListItem.Content>
       </ListItem>
     );
